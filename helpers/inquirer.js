@@ -3,6 +3,8 @@ import 'colors';
 
 import inquirer from 'inquirer';
 
+// Using "type": "module" in package.json now we can use import from instead of require()
+
 const questions = [
 	// questions to show through inquirer.
 	{
