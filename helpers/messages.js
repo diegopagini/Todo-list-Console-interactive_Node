@@ -36,7 +36,7 @@ const pause = () => {
 			output: process.stdout,
 		});
 
-		readline.question(`\nPresione ${'ENTER'.yellow} para continuar `, () => {
+		readline.question(`\nPresione ${'ENTER'.yellow} para continuar\n`, () => {
 			readline.close();
 			resolve();
 		});
