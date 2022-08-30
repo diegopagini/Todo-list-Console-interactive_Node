@@ -12,6 +12,7 @@
 	"license": "MIT",
 	"dependencies": {
 		"colors": "^1.4.0",
-		"inquirer": "^9.1.0"
+		"inquirer": "^9.1.0",
+		"uuid": "^8.3.2"
 	}
 }
