@@ -1,4 +1,6 @@
 /** @format */
+import 'colors';
+
 import { Task } from './task.js';
 
 export class Tasks {
@@ -19,5 +21,50 @@ export class Tasks {
 
 	loadTasks(tasks = []) {
 		tasks.forEach((task) => (this._list[task.id] = task));
+	}
+
+	showAllTasks() {
+		console.clear();
+		console.log('\n'); // To create a empty space.
+
+		Object.keys(this._list).forEach((key, index) => {
+			// One way to create the list without using our tasksList.
+			console.log(
+				`${(index + 1 + '.').yellow} ${this._list[key].description} : ${
+					this._list[key].completedIn ? 'Completado'.green : 'Pendiente'.red
+				} `
+			);
+		});
+	}
+
+	showTasksByStatus(completed = true) {
+		console.clear();
+		console.log('\n'); // To create a empty space.
+		let counter = 0;
+
+		this.tasksList.forEach((task) => {
+			const { description, completedIn } = task;
+			const status = completedIn ? 'Completada'.green : 'Pendiente'.red;
+
+			if (completed) {
+				// To show completed tasks.
+				if (completedIn) {
+					counter += 1;
+					console.log(`${(counter + '.').yellow} ${description} : ${status}`);
+				}
+			}
+
+			if (!completed) {
+				// To show pending tasks.
+				if (!completedIn) {
+					counter += 1;
+					console.log(`${(counter + '.').yellow} ${description} : ${status}`);
+				}
+			}
+		});
+	}
+
+	deleteTask(id = '') {
+		if (this._list[id]) delete this._list[id];
 	}
 }
