@@ -1,13 +1,14 @@
 /** @format */
-import { inquirerMenu } from './helpers/inquirer.js';
+import { inquirerMenu, pause } from './helpers/inquirer.js';
 
 const main = async () => {
-	let opt = '';
+	let response = '';
 
 	do {
-		opt = await inquirerMenu();
-		console.log({ opt });
-	} while (opt !== '');
+		response = await inquirerMenu();
+		console.log({ response });
+		await pause();
+	} while (response !== '0');
 };
 
 main();
