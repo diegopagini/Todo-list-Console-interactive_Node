@@ -4,9 +4,10 @@ import { Tasks } from './models/tasks.js';
 
 const main = async () => {
 	const tasks = new Tasks();
-	let response = '';
+	let response = ''; // Option selected.
 
 	do {
+		// Show menu.
 		response = await inquirerMenu();
 
 		switch (response) {
@@ -16,7 +17,7 @@ const main = async () => {
 				break;
 
 			case '2':
-				console.log(tasks._list);
+				console.log(tasks.tasksList);
 				break;
 		}
 
