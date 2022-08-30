@@ -113,7 +113,7 @@ const checkList = async (tasks = []) => {
 
 	const question = [
 		{
-			type: 'checkbox',
+			type: 'checkbox', // Type checkbox to make a list with checkboxes
 			name: 'ids',
 			message: 'Selecciones',
 			choices,

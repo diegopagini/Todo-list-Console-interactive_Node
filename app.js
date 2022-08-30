@@ -34,7 +34,7 @@ const main = async () => {
 
 			case '5': // Copleted or Pending
 				const ids = await checkList(tasks.tasksList);
-				console.log(ids);
+				tasks.toggleTasks(ids);
 				break;
 
 			case '6': // Delete a task.

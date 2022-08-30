@@ -50,7 +50,7 @@ export class Tasks {
 				// To show completed tasks.
 				if (completedIn) {
 					counter += 1;
-					console.log(`${(counter + '.').yellow} ${description} : ${status}`);
+					console.log(`${(counter + '.').yellow} ${description} : ${completedIn.green}`);
 				}
 			}
 
@@ -66,5 +66,16 @@ export class Tasks {
 
 	deleteTask(id = '') {
 		if (this._list[id]) delete this._list[id];
+	}
+
+	toggleTasks(ids = []) {
+		ids.forEach((id) => {
+			const task = this._list[id];
+			if (!task.completedIn) task.completedIn = new Date().toISOString();
+		});
+
+		this.tasksList.forEach((task) => {
+			if (!ids.includes(task.id)) this._list[task.id].completedIn = null;
+		});
 	}
 }
