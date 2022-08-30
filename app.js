@@ -1,6 +1,6 @@
 /** @format */
 import { readDB, saveDB } from './helpers/db.js';
-import { confirm, inquirerMenu, pause, readInput, tasksToDelete } from './helpers/inquirer.js';
+import { checkList, confirm, inquirerMenu, pause, readInput, tasksToDelete } from './helpers/inquirer.js';
 import { Tasks } from './models/tasks.js';
 
 const main = async () => {
@@ -32,12 +32,20 @@ const main = async () => {
 				tasks.showTasksByStatus(false);
 				break;
 
+			case '5': // Copleted or Pending
+				const ids = await checkList(tasks.tasksList);
+				console.log(ids);
+				break;
+
 			case '6': // Delete a task.
 				const id = await tasksToDelete(tasks.tasksList); // Get task to delete.
-				const ok = await confirm('¿Estás seguro?'); // Ask to confirm.
-				if (ok) {
-					tasks.deleteTask(id);
-					console.log('\n   Tarea borrada'.red);
+
+				if (id !== '0') {
+					const ok = await confirm('¿Estás seguro?'); // Ask to confirm.
+					if (ok) {
+						tasks.deleteTask(id);
+						console.log('\n   Tarea borrada'.red);
+					}
 				}
 				break;
 		}

@@ -89,6 +89,8 @@ const tasksToDelete = async (tasks = []) => {
 		name: `${(index + 1 + '.').yellow} ${task.description}`,
 	}));
 
+	choices.unshift({ value: '0', name: '0.'.yellow + ' Cancelar' });
+
 	const questions = [
 		{
 			type: 'list',
@@ -100,6 +102,26 @@ const tasksToDelete = async (tasks = []) => {
 
 	const { id } = await inquirer.prompt(questions);
 	return id;
+};
+
+const checkList = async (tasks = []) => {
+	const choices = tasks.map((task, index) => ({
+		value: task.id,
+		name: `${(index + 1 + '.').yellow} ${task.description}`,
+		checked: task.completedIn ? true : false,
+	}));
+
+	const question = [
+		{
+			type: 'checkbox',
+			name: 'ids',
+			message: 'Selecciones',
+			choices,
+		},
+	];
+
+	const { ids } = await inquirer.prompt(question);
+	return ids;
 };
 
 const confirm = async (message = '') => {
@@ -115,4 +137,5 @@ const confirm = async (message = '') => {
 	return ok;
 };
 
-export { inquirerMenu, pause, readInput, tasksToDelete, confirm }; // Another way to export. Avoiding the use of export in const and using it this way.
+export { inquirerMenu, pause, readInput, tasksToDelete, confirm, checkList };
+// Another way to export. Avoiding the use of export in const and using it this way.
